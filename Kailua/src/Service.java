@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Service {
 
@@ -37,6 +39,23 @@ public class Service {
         }
 
     }
+    /* public void createSMTH(){
+        ResultSet rs = DBConnection.selectQuery("SELECT COLUMN FROM TABLE;");
+        try{
+            while(rs.next()){
+                System.out.println("Name" + rs.getString(""));
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public void insertSMTH(){
+        DBConnection.executeQuery("INSERT INTO COLUMN (date, time, child_id, teacher_id) VALUES\n" +
+                "(\"" + s + "\"," + m + "," + t + "," + h + ");");
+    }
+    */
+
 
 
 }
