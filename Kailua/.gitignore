@@ -1,5 +1,5 @@
 #ignoring .idea/workspace.xml
-.idea/workspace.xm
+.idea/workspace.xml
 
 #ignore .class
 out/
