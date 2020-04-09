@@ -3,10 +3,10 @@ import java.sql.*;
 public class DBConnection {
 
     private static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static String database_url = ""; //the url of database
-    private static String username = "";
-    private static String password = "";
-    private static String schema = "";
+    private static String database_url = "jdbc:mysql://localhost:3306/carproject"; //the url of database
+    private static String username = "root";
+    private static String password = "Mediatech1996";
+    private static String schema = "carproject";
 
 
     public static ResultSet selectQuery(String query) { // Select Queries only
