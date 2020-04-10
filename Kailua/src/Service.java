@@ -39,18 +39,13 @@ public class Service {
         }
 
     }
-    /* public void createSMTH(){
-        ResultSet rs = DBConnection.selectQuery("SELECT COLUMN FROM TABLE;");
-        try{
-            while(rs.next()){
-                System.out.println("Name" + rs.getString(""));
-            }
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
+    public static void createContract(Contract contract){
+        DBConnection.executeQuery("INSERT INTO rentals (fromDate, fromTime, toDate, toTime, maxKM, km, car_id, customer_id) VALUES ( \"" +  contract.getFromDate()  + "\", \"" +
+                contract.getFromTime() + "\", \"" + contract.getToDate() + "\", \"" + contract.getToTime() + "\", " + contract.getMaxKm() + ", " + contract.getKm() + ", \"" +
+                contract.getCarId() + "\", \"" + contract.getCustomerId() + "\");");
+        System.out.println ("\nRental contract created.");
     }
-    public void insertSMTH(){
+    /*public void insertSMTH(){
         DBConnection.executeQuery("INSERT INTO COLUMN (date, time, child_id, teacher_id) VALUES\n" +
                 "(\"" + s + "\"," + m + "," + t + "," + h + ");");
     }

@@ -6,13 +6,13 @@ public class Contract {
     private String fromTime;
     private String toDate;
     private String toTime;
-    private String maxKm;
-    private String odometer;
+    private int maxKm;
+    private int km;
 
     public Contract(){
     }
 
-    public Contract(String carId, String customerId, String fromDate, String fromTime, String toDate, String toTime, String maxKm, String odometer) {
+    public Contract(String carId, String customerId, String fromDate, String fromTime, String toDate, String toTime, int maxKm, int km) {
         this.carId = carId;
         this.customerId = customerId;
         this.fromDate = fromDate;
@@ -20,7 +20,7 @@ public class Contract {
         this.toDate = toDate;
         this.toTime = toTime;
         this.maxKm = maxKm;
-        this.odometer = odometer;
+        this.km = km;
     }
 
     public String getCarId() {
@@ -71,30 +71,30 @@ public class Contract {
         this.toTime = toTime;
     }
 
-    public String getMaxKm() {
+    public int getMaxKm() {
         return maxKm;
     }
 
-    public void setMaxKm(String maxKm) {
+    public void setMaxKm(int maxKm) {
         this.maxKm = maxKm;
     }
 
-    public String getOdometer() {
-        return odometer;
+    public int getKm() {
+        return km;
     }
 
-    public void setOdometer(String odometer) {
-        this.odometer = odometer;
+    public void setKm(int km) {
+        this.km = km;
     }
 
     @Override
     public String toString() {
         return carId + " " + customerId + " " + fromDate + " " + fromTime + " " + toDate +
-                " " + toTime + " " + maxKm + " " + odometer;
+                " " + toTime + " " + maxKm + " " + km;
     }
 
     public String toStringConsole() {
         return "Car ID: " + carId + ". Customer ID: " + customerId + ". Rented from " + fromDate + " at " + fromTime + " to " + toDate +
-                " at " + toTime + ". To be driven max " + maxKm + "km. Current mileage " + odometer + "km.";
+                " at " + toTime + ". To be driven max " + maxKm + "km. Current mileage " + km + "km.";
     }
 }

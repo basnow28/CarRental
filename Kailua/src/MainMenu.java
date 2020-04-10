@@ -7,7 +7,7 @@ public class MainMenu {
     public MainMenu() {
         System.out.println("");
         System.out.println("Select from the following options:");
-        System.out.println("[1] Create new contract.");
+        System.out.println("[1] Rental contracts");
         System.out.println("[2] View/modify existing contracts");
         System.out.println("[3] Enter new car");
         System.out.println("[4] View/modify existing cars");
@@ -17,13 +17,13 @@ public class MainMenu {
 
         switch (answer) {
             case "1":
-                new ContractMenu();
+                new RentalContractMenu();
                 break;
             case "2":
                 //new ModifyContractMenu();
                 break;
             case "3":
-                new NewCarMenu();
+                //new NewCarMenu();
                 break;
             case "4":
                 //new ModifyCarMenu();
