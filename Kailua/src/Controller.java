@@ -31,7 +31,7 @@ public class Controller {
         String odometer = validation.getValidatedString("Enter car odometer:");
         String fuelType = validation.getValidatedString("Enter car fuel type:");
         Car car = new Car(brand, model, plate, regDate, odometer, fuelType);
-        service.createCar(car); //WHAT THE FRICK AM I TO DO WITH THE CAR ID
+        service.createCar(car);
     }
 
     public static boolean login(){

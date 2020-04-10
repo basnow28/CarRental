@@ -1,6 +1,6 @@
 public class Car {
 
-    private String carId;
+    //private String carId;
     private String brand;
     private String model;
     private String plate;
@@ -8,11 +8,11 @@ public class Car {
     private String odometer;
     private String fuelType;
 
-    public Car(){
+    public Car(String brand, String model, String plate, String regDate, String odometer, String fuelType){
     }
 
     public Car(String carId, String brand, String model, String plate, String regDate, String odometer, String fuelType) {
-        this.carId = carId;
+        //this.carId = carId;
         this.brand = brand;
         this.model = model;
         this.plate = plate;
@@ -21,13 +21,13 @@ public class Car {
         this.fuelType = fuelType;
     }
 
-    public String getCarId() {
+    /*public String getCarId() {
         return carId;
     }
 
     public void setCarId(String carId) {
         this.carId = carId;
-    }
+    }*/
 
     public String getBrand() {
         return brand;
@@ -79,12 +79,12 @@ public class Car {
 
     @Override
     public String toString() {
-        return carId + " " + brand + " " + model + " " + plate +  " " + regDate + " " + odometer +
+        return /*carId* + " " + */ brand + " " + model + " " + plate +  " " + regDate + " " + odometer +
                 " " + fuelType;
     }
 
     public String toStringConsole() {
-        return "Car ID: " + carId + ". Brand: " + brand + ". Model: " + model + ". Licence Plate: " + plate + ", registered on: " + regDate +
+        return /*"Car ID: " + carId + ".*/ "Brand: " + brand + ". Model: " + model + ". Licence Plate: " + plate + ", registered on: " + regDate +
                 ". Odometer: " + odometer + ". Fuel Type is " + fuelType;
     }
 }
