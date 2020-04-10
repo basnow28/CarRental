@@ -50,6 +50,23 @@ public class Service {
                 "(\"" + s + "\"," + m + "," + t + "," + h + ");");
     }
     */
+    public static void displayContracts(){
+        ResultSet rs = DBConnection.selectQuery("SELECT * FROM rentals;");
+        try
+        {
+            while (rs.next())
+            {
+                System.out.println("Rental ID: " + rs.getInt("rental_id") + " | "+ "Rental from date: " + rs.getString("fromDate") + " | " +
+                        "Rental from time: " + rs.getString("fromTime") + " | " +
+                        "Rental to date:: " + rs.getString("toDate") + " | " +
+                        "Rental to time: " + rs.getString("toTime") + " | " + "Maximum km to use: " + rs.getInt("maxKM") + " | " +
+                        "Current number of km: " + rs.getInt("km") + " | " + "Car ID: " + rs.getInt("car_id") + " | "+ "Customer ID: " + rs.getInt("customer_id") );
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 
 

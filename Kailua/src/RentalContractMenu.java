@@ -20,7 +20,7 @@ public class RentalContractMenu {
                 App.getController().createContract();
                 break;
             case "2":
-                //
+                App.getController().displayContracts();
                 break;
             case "3":
                 //

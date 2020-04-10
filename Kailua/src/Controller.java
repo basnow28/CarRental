@@ -15,7 +15,10 @@ public class Controller {
         int km = validation.getValidatedInt("Enter how many kilometers car already have: ");
         Contract contract = new Contract(carId, customerId, dateFrom, fromTime, dateTo, toTime, maxKm, km );
         service.createContract(contract);
-}
+    }
+    public static void displayContracts(){
+        service.displayContracts();
+    }
     public static String generateEmployeeId() {
         return service.generateCustomerId();
     }
