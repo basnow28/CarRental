@@ -36,6 +36,13 @@ public class Validation {
         return matcher.matches();
     }
 
+    private boolean validateString(String text){
+        Pattern pattern = Pattern.compile("[A-Za-z]+");
+        Matcher matcher = pattern.matcher(text);
+        return matcher.matches();
+    }
+
+
     private boolean validateCpr(String cpr){
         Pattern pattern = Pattern.compile("\\d{6}-\\d{4}");
         Matcher matcher = pattern.matcher(cpr);
@@ -136,6 +143,16 @@ public class Validation {
         }
         System.out.println("Invalid name. Name cannot contain special characters or numbers");
         return getValidatedName(message);
+    }
+
+    public String getValidatedString(String message){
+        System.out.println(message);
+        String text = scanner.nextLine();
+        if(this.validateString(text)){
+            return text;
+        }
+        System.out.println(text + " is invalid. It cannot contain special characters or numbers");
+        return getValidatedString(message);
     }
 
     public String getValidatedCpr(String message){

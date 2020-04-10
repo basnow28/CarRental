@@ -23,6 +23,17 @@ public class Controller {
         return service.generateCustomerId();
     }
 
+    public static void createCar(){
+        String brand = validation.getValidatedString("Enter car brand:");
+        String model = validation.getValidatedString("Enter car model:");
+        String plate = validation.getValidatedString("Enter car plate:");
+        String regDate = validation.getValidatedString("Enter car registration date:");
+        String odometer = validation.getValidatedString("Enter car odometer:");
+        String fuelType = validation.getValidatedString("Enter car fuel type:");
+        Car car = new Car(brand, model, plate, regDate, odometer, fuelType);
+        service.createCar(car); //WHAT THE FRICK AM I TO DO WITH THE CAR ID
+    }
+
     public static boolean login(){
         return service.login();
     }

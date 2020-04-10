@@ -68,6 +68,13 @@ public class Service {
         }
     }
 
+    public static void createCar(Car car){
+        DBConnection.executeQuery("INSERT INTO Cars (brand, model, plate, regDate, odometer, fuelType) VALUES" +
+                "(\"" + car.getBrand() + "\", \"" + car.getModel() + "\", \"" + car.getPlate() + "\", \"" + car.getRegDate() + "\", \"" +
+                car.getOdometer()+ "\", \"" + car.getFuelType() + "\");");
+        System.out.println("\nCar successfully created.");
+    }
+
 
 
 }
