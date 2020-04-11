@@ -133,4 +133,150 @@ public class Controller {
         return service.getRentalsByCarInfo(brand, key);
     }
 
+    public void findCustomerAndUpdate() {
+        String choice = "-1";
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        do{
+            System.out.println("Which fields would you like to search by?");
+            System.out.println("1. FirstName");
+            System.out.println("2. LastName");
+            System.out.println("3. Mobile phone");
+            System.out.println("4. email");
+            System.out.println("5. Go back");
+            choice = scanner.next();
+            switch(choice){
+                case "1":
+                    String firstName = validation.getValidatedName("What is the first name you are looking for?");
+                    ids = searchForCustomers("firstName", firstName);
+                    break;
+                case "2":
+                    String lastName = validation.getValidatedName("What is the last name you are looking for?");
+                    ids = searchForCustomers("lastName", lastName);
+                    break;
+                case "3":
+                    String mobilePhone = validation.getValidatedPhone("What is the phone number?");
+                    ids = searchForCustomers("mobilePhone", mobilePhone);
+                    break;
+                case "4":
+                    String email = validation.getValidatedEmail("What is the email address?");
+                    ids = searchForCustomers("email", email);
+                    break;
+            }
+            if(ids.size() > 0){
+                updateOrDeleteCustomer(ids);
+            }else{
+                System.out.println("There are no results");
+            }
+        }while(!choice.equals("5"));
+        ContractMenu.updateExistingContract();
+    }
+
+    private void updateOrDeleteCustomer(ArrayList<Integer> ids) {
+        String choice = "-1";
+        int id;
+        do{
+            System.out.println("What would you like to do next?");
+            System.out.println("1. Update Customer information");
+            System.out.println("2. Update Customer address");
+            System.out.println("3. Delete Customer");
+            System.out.println("4. Go back");
+            choice = scanner.next();
+            switch(choice){
+                case "1":
+                    id = validation.getValidatedIntFromRange("Write down id of a customer you want to update: " + ids.toString(), ids);
+                    updateCustomer(id);
+                    break;
+                case "2":
+                    id = validation.getValidatedIntFromRange("Write down the customer id, whose address you want to update: " + ids.toString(), ids);
+                    updateCustomersAddress(id);
+                    break;
+                case "3":
+                    id = validation.getValidatedIntFromRange("Write down the customer's id you want to delete " + ids.toString(), ids);
+                    if(service.deleteCustomer(id)){
+                        System.out.println("Customer has been successfully deleted.");
+                    }
+                    break;
+            }
+        }while(!choice.equals("4"));
+        findCustomerAndUpdate();
+    }
+
+    private void updateCustomersAddress(int id) {
+        String choice = "-1";
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        do{
+            service.displayCustomerAddress(id);
+            System.out.println("Which fields would you like to update?");
+            System.out.println("1. StreetName");
+            System.out.println("2. Zipcode");
+            System.out.println("3. City");
+            System.out.println("4. Go back");
+            choice = scanner.next();
+            switch(choice){
+                case "1":
+                    System.out.println("What is the new street name? ");
+                    String streetName = scanner.next();
+                    service.updateAddress("streetName", streetName, id);
+                    break;
+                case "2":
+                    System.out.println("What is the new zipcode? ");
+                    String zipCode = scanner.next();
+                    service.updateAddress("zipCode", zipCode, id);
+                    break;
+                case "3":
+                    System.out.println("What is the new city? ");
+                    String city = scanner.next();
+                    service.updateAddress("city", city, id);
+                    break;
+            }
+        }while(!choice.equals("4"));
+        findCustomerAndUpdate();
+    }
+
+    private void updateCustomer(int id) {
+        String choice = "-1";
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        do{
+            System.out.println("Which fields would you like to update?");
+            System.out.println("1. FirstName");
+            System.out.println("2. LastName");
+            System.out.println("3. Mobile phone");
+            System.out.println("4. email");
+            System.out.println("5. driverLicenceNumber");
+            System.out.println("6. driverSinceDate");
+            System.out.println("7. Go back");
+            choice = scanner.next();
+            switch(choice){
+                case "1":
+                    String firstName = validation.getValidatedName("Write down new firstName for the Customer");
+                    service.updateCustomer("firstName", firstName, id);
+                    break;
+                case "2":
+                    String lastName = validation.getValidatedName("What is the last name you are looking for?");
+                    service.updateCustomer("lastName", lastName, id);
+                    break;
+                case "3":
+                    String mobilePhone = validation.getValidatedPhone("What is the new phone number?");
+                    service.updateCustomer("mobilePhone", mobilePhone, id);
+                    break;
+                case "4":
+                    String email = validation.getValidatedEmail("What is the new email address?");
+                    service.updateCustomer("email", email, id);
+                    break;
+                case "5":
+                    String driverLicenceNumber = validation.getValidatedLicenceNumber("What is the new licence number? [XXXXX-XX-XXXX]");
+                    service.updateCustomer("driverLicenceNumber", driverLicenceNumber, id);
+                    break;
+                case "6":
+                    String driverSinceDate = validation.getValidatedDate("What is the new driver since date?");
+                    service.updateCustomer("driverSinceDate", driverSinceDate, id);
+                    break;
+            }
+        }while(!choice.equals("7"));
+        findCustomerAndUpdate();
+    }
+
+    private ArrayList<Integer> searchForCustomers(String field, String key) {
+        return service.getCustomers(field, key);
+    }
 }

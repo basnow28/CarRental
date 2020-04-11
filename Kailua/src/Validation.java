@@ -71,6 +71,12 @@ public class Validation {
         return false;
     }
 
+    private boolean validateLicenceNumber(String number){
+        Pattern pattern = Pattern.compile("[a-zA-Z0-9]{5}-[a-zA-Z0-9]{2}-[a-zA-Z0-9]{4}");
+        Matcher matcher = pattern.matcher(number);
+        return matcher.matches();
+    }
+
     public int getValidatedInt(String message) {
         System.out.println(message);
         String number = scanner.nextLine();
@@ -236,6 +242,17 @@ public class Validation {
         }
         System.out.println("Invalid time format. Correct format: HH:MM");
         return getValidatedTime(message);
+    }
+
+    public String getValidatedLicenceNumber(String message) {
+        System.out.println(message);
+        String number = scanner.nextLine();
+
+        if(validateLicenceNumber(number)){
+            return number;
+        }
+        System.out.println("Invalid licence number. Correct format: XXXXX-XX-XXXX");
+        return getValidatedLicenceNumber(message);
     }
 }
 

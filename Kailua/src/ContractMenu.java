@@ -52,7 +52,7 @@ public class ContractMenu {
                 App.getController().findRentalAndUpdate();
                 break;
             case "2":
-                findCustomer();
+                App.getController().findCustomerAndUpdate();
                 break;
         }
         }while(!choice.equals("3"));
