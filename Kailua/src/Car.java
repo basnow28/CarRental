@@ -8,6 +8,10 @@ public class Car {
     private String odometer;
     private String fuelType;
 
+    public Car(){
+
+    };
+
     public Car(String brand, String model, String plate, String regDate, String odometer, String fuelType){
     }
 

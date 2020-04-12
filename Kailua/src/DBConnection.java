@@ -3,10 +3,10 @@ import java.sql.*;
 public class DBConnection {
 
     private static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static String database_url = "jdbc:mysql://localhost:3306/carproject"; //the url of database
-    private static String username = "root";
-    private static String password = "Mediatech1996";
-    private static String schema = "carproject";
+    private static String database_url = "jdbc:mysql://localhost:3306/CarProject"; //the url of database
+    private static String username = "carRental";
+    private static String password = "Mediatech1996!";
+    private static String schema = "CarProject";
 
 
     public static ResultSet selectQuery(String query) { // Select Queries only
@@ -31,10 +31,11 @@ public class DBConnection {
             Statement st = con.createStatement();
             st.execute("USE " + schema + ";");
             boolean rs = st.execute(query); // Query is executed. //???
-            return rs; // The ResultSet is being returned. /????
+            return !rs; // The ResultSet is being returned. /????
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }
-        return false; // Returns null in case of any exception. //????
+         // Returns null in case of any exception. //????
     }
 }
