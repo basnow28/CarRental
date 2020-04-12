@@ -20,7 +20,7 @@ public class MainMenu {
                 new ContractMenu();
                 break;
             case "2":
-                //new ModifyContractMenu();
+                ContractMenu.updateExistingContract();
                 break;
             case "3":
                 new NewCarMenu();

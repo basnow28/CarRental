@@ -50,6 +50,18 @@ public class Validation {
         return matcher.matches();
     }
 
+    private boolean validateDate(String date){
+        Pattern pattern = Pattern.compile("\\d{2}.\\d{2}.\\d{2}");
+        Matcher matcher = pattern.matcher(date);
+        return matcher.matches();
+    }
+
+    private boolean validateTime(String date){
+        Pattern pattern = Pattern.compile("\\d{2}:\\d{2}");
+        Matcher matcher = pattern.matcher(date);
+        return matcher.matches();
+    }
+
 
     private boolean validateIntFromRange(int number, ArrayList<Integer> range) {
         for(int i : range){
@@ -57,6 +69,12 @@ public class Validation {
                 return true;
         }
         return false;
+    }
+
+    private boolean validateLicenceNumber(String number){
+        Pattern pattern = Pattern.compile("[a-zA-Z0-9]{5}-[a-zA-Z0-9]{2}-[a-zA-Z0-9]{4}");
+        Matcher matcher = pattern.matcher(number);
+        return matcher.matches();
     }
 
     public int getValidatedInt(String message) {
@@ -165,6 +183,17 @@ public class Validation {
         return getValidatedYear(message);
     }
 
+    public String getValidatedDate(String message){
+        System.out.println(message);
+        String date = scanner.nextLine();
+
+        if(validateDate(date)){
+            return date;
+        }
+        System.out.println("Invalid date format. Correct format: DD.MM.YY");
+        return getValidatedDate(message);
+    }
+
     public String getValidatedAnswer(String message) {
         System.out.println(message);
         String answer = scanner.nextLine();
@@ -202,6 +231,28 @@ public class Validation {
         }
         System.out.println("The id does not exist");
         return getValidatedIntFromRange(message, range);
+    }
+
+    public String getValidatedTime(String message) {
+        System.out.println(message);
+        String time = scanner.nextLine();
+
+        if(validateTime(time)){
+            return time;
+        }
+        System.out.println("Invalid time format. Correct format: HH:MM");
+        return getValidatedTime(message);
+    }
+
+    public String getValidatedLicenceNumber(String message) {
+        System.out.println(message);
+        String number = scanner.nextLine();
+
+        if(validateLicenceNumber(number)){
+            return number;
+        }
+        System.out.println("Invalid licence number. Correct format: XXXXX-XX-XXXX");
+        return getValidatedLicenceNumber(message);
     }
 }
 
