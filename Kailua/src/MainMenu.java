@@ -5,8 +5,6 @@ public class MainMenu {
     public static Scanner scanner = new Scanner(System.in);
 
     public MainMenu() {
-        System.out.println("");
-        System.out.println("Select from the following options:");
         System.out.println("[1] Create contracts");
         System.out.println("[2] View contracts");
         System.out.println("[3] Modify existing contracts");
@@ -26,10 +24,10 @@ public class MainMenu {
                 ContractMenu.updateExistingContract();
                 break;
             case "4":
-                //new NewCarMenu();
+                new NewCarMenu();
                 break;
             case "5":
-                //new ModifyCarMenu();
+                new ModifyCarMenu();
                 break;
             case "6":
                 System.out.println("Logging off...");

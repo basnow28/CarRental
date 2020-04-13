@@ -69,6 +69,12 @@ public class Validation {
         return matcher.matches();
     }
 
+    private boolean validatePlate(String text){
+        Pattern pattern = Pattern.compile("[A-Za-z1-9]+");
+        Matcher matcher = pattern.matcher(text);
+        return matcher.matches();
+    }
+
 
     private boolean validateIntFromRange(int number, ArrayList<Integer> range) {
         for(int i : range){
@@ -188,6 +194,15 @@ public class Validation {
         return getValidatedPhone(message);
     }
 
+    public String getValidatedPlate(String message){
+        System.out.println(message);
+        String plate = scanner.nextLine();
+        if(this.validatePlate(plate)){
+            return plate;
+        }
+        System.out.println("Invalid plate. Only A-Z and 1-9 allowed");
+        return getValidatedPlate(message);
+    }
 
     public String getValidatedEmployeeType(String message) {
         System.out.println(message);

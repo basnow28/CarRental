@@ -61,11 +61,12 @@ public class Controller {
     public static void createCar(){
         String brand = validation.getValidatedString("Enter car brand:");
         String model = validation.getValidatedString("Enter car model:");
-        String plate = validation.getValidatedString("Enter car plate:");
-        String regDate = validation.getValidatedString("Enter car registration date:");
-        String odometer = validation.getValidatedString("Enter car odometer:");
+        String plate = validation.getValidatedPlate("Enter car plate:");
+        String regDate = validation.getValidatedDate("Enter car registration date:");
+        String odometer = Integer.toString(validation.getValidatedInt("Enter car odometer:"));
         String fuelType = validation.getValidatedString("Enter car fuel type:");
         Car car = new Car(brand, model, plate, regDate, odometer, fuelType);
+        System.out.println(car.toStringConsole());
         service.createCar(car);
     }
 
@@ -331,4 +332,46 @@ public class Controller {
     private ArrayList<Integer> searchForCustomers(String field, String key) {
         return service.getCustomers(field, key);
     }
+
+    public void showAllCars(){
+        service.showAllCars();
+    }
+
+    public void modifyCar(){
+        System.out.println("Please enter licence plate number of car you wish to modify:");
+        String plate = scanner.next();
+        System.out.println("What do you wish to modify? Type:");
+        System.out.println("[1] for brand and model, [2] for Licence Plate, [3] for Registration date, [4] for odometer, or [5] for Fuel Type");
+        System.out.println("Type [6] to exit to Main Menu");
+        String answer = scanner.next();
+        switch (answer){
+            case "1":
+                service.updateCarBrand(plate, answer);
+                service.updateCarModel(plate, answer);
+                break;
+            case "2":
+                service.updateCarPlate(plate, answer);
+                break;
+            case "3":
+                service.updateCarRegDate(plate, answer);
+                break;
+            case "4":
+                service.updateCarOdometer(plate, answer);
+                break;
+            case "5":
+                service.updateCarFuelType(plate, answer);
+                break;
+            case "6":
+                new MainMenu();
+                break;
+        }
+        new MainMenu();
+    }
+
+    public void deleteCar(){
+        System.out.println("Please enter licence plate number of car you wish to delete:");
+        String answer = scanner.next();
+        service.deleteCar(answer);
+    }
 }
+

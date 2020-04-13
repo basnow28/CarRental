@@ -1,6 +1,5 @@
 public class Car {
 
-    //private String carId;
     private String brand;
     private String model;
     private String plate;
@@ -12,11 +11,10 @@ public class Car {
 
     };
 
-    public Car(String brand, String model, String plate, String regDate, String odometer, String fuelType){
-    }
+    //public Car(String brand, String model, String plate, String regDate, String odometer, String fuelType){
+    //}
 
-    public Car(String carId, String brand, String model, String plate, String regDate, String odometer, String fuelType) {
-        //this.carId = carId;
+    public Car(String brand, String model, String plate, String regDate, String odometer, String fuelType) {
         this.brand = brand;
         this.model = model;
         this.plate = plate;
