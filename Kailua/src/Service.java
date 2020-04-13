@@ -45,6 +45,7 @@ public class Service {
                 contract.getCarId() + "\", \"" + contract.getCustomerId() + "\");");
         System.out.println("\nRental contract created.");
     }
+
     /* public void createSMTH(){
         ResultSet rs = DBConnection.selectQuery("SELECT COLUMN FROM TABLE;");
         try{
@@ -221,11 +222,63 @@ public class Service {
         }
     }
 
-    public static void createCar(Car car){
+    public void createCar(Car car){
         DBConnection.executeQuery("INSERT INTO Cars (brand, model, plate, regDate, odometer, fuelType) VALUES" +
                 "(\"" + car.getBrand() + "\", \"" + car.getModel() + "\", \"" + car.getPlate() + "\", \"" + car.getRegDate() + "\", \"" +
                 car.getOdometer()+ "\", \"" + car.getFuelType() + "\");");
         System.out.println("\nCar successfully created.");
+    }
+
+    public boolean deleteCar(String plate) {
+        String query = "DELETE from Cars WHERE plate = " + plate + ";";
+        return DBConnection.executeQuery(query);
+    }
+
+    public static void showAllCars(){
+        ResultSet rs = DBConnection.selectQuery("SELECT * FROM cars;");
+        try
+        {
+            while (rs.next())
+            {
+                System.out.println("Brand: " + rs.getString("brand") + " | "+ "Model: " + rs.getString("model") + " | " +
+                        "Licence Plate: " + rs.getString("plate") + " | " +
+                        "Registered on:: " + rs.getString("regDate") + " | " +
+                        "Odometer: " + rs.getString("odometer") + " | " +
+                        "Fuel Type: " + rs.getString("fuelType"));
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateCarBrand(String plate, String answer){
+        String query = "UPDATE from cars SET brand = \"" + answer + "\" WHERE plate = " + plate + ";";
+        DBConnection.executeQuery(query);
+    }
+
+    public void updateCarModel(String plate, String answer){
+        String query = "UPDATE from cars SET model = \"" + answer + "\" WHERE plate = " + plate + ";";
+        DBConnection.executeQuery(query);
+    }
+
+    public void updateCarPlate(String plate, String answer){
+        String query = "UPDATE from cars SET plate = \"" + answer + "\" WHERE plate = " + plate + ";";
+        DBConnection.executeQuery(query);
+    }
+
+    public void updateCarRegDate(String plate, String answer){
+        String query = "UPDATE from cars SET regDate = \"" + answer + "\" WHERE plate = " + plate + ";";
+        DBConnection.executeQuery(query);
+    }
+    public void updateCarOdometer(String plate, String answer){
+        String query = "UPDATE from cars SET odometer = \"" + answer + "\" WHERE plate = " + plate + ";";
+        DBConnection.executeQuery(query);
+    }
+
+    public void updateCarFuelType(String plate, String answer){
+        String query = "UPDATE from cars SET fuelType = \"" + answer + "\" WHERE plate = " + plate + ";";
+        DBConnection.executeQuery(query);
     }
 
 

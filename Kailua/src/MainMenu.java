@@ -12,7 +12,6 @@ public class MainMenu {
         System.out.println("[3] Enter new car");
         System.out.println("[4] View/modify existing cars");
         System.out.println("[5] Exit system");
-
         String answer = scanner.next();
 
         switch (answer) {
@@ -23,10 +22,10 @@ public class MainMenu {
                 ContractMenu.updateExistingContract();
                 break;
             case "3":
-                //new NewCarMenu();
+                new NewCarMenu();
                 break;
             case "4":
-                //new ModifyCarMenu();
+                new ModifyCarMenu();
                 break;
             case "5":
                 System.out.println("Logging off...");
