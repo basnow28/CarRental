@@ -223,7 +223,7 @@ public class Service {
     }
 
     public static void displayContracts(){
-        ResultSet rs = DBConnection.selectQuery("SELECT * FROM rentals;");
+        ResultSet rs = DBConnection.selectQuery("SELECT * FROM Rentals;");
         try
         {
             while (rs.next())
@@ -246,7 +246,4 @@ public class Service {
                 car.getOdometer()+ "\", \"" + car.getFuelType() + "\");");
         System.out.println("\nCar successfully created.");
     }
-
-
-
 }

@@ -87,8 +87,7 @@ public class Controller {
             System.out.println("2. End date");
             System.out.println("3. Car brand");
             System.out.println("4. Car plate");
-            System.out.println("5. Customer information");
-            System.out.println("6. Go back");
+            System.out.println("5. Go back");
             choice = scanner.next();
             switch(choice){
                 case "1":
@@ -115,7 +114,7 @@ public class Controller {
             }else{
                 System.out.println("There are no results");
             }
-        }while(!choice.equals("6"));
+        }while(!choice.equals("5"));
         ContractMenu.updateExistingContract();
     }
 
