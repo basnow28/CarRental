@@ -241,9 +241,9 @@ public class Service {
     }
 
     public void createCar(Car car){
-        DBConnection.executeQuery("INSERT INTO Cars (brand, model, plate, regDate, odometer, fuelType) VALUES" +
+        DBConnection.executeQuery("INSERT INTO Cars (brand, model, plate, regDate, odometer, fuelType, carType) VALUES" +
                 "(\"" + car.getBrand() + "\", \"" + car.getModel() + "\", \"" + car.getPlate() + "\", \"" + car.getRegDate() + "\", \"" +
-                car.getOdometer()+ "\", \"" + car.getFuelType() + "\");");
+                car.getOdometer()+ "\", \"" + car.getFuelType() + "\", \"" + car.getCarType() + "\");");
         System.out.println("\nCar successfully created.");
     }
 
@@ -262,7 +262,8 @@ public class Service {
                         "Licence Plate: " + rs.getString("plate") + " | " +
                         "Registered on:: " + rs.getString("regDate") + " | " +
                         "Odometer: " + rs.getString("odometer") + " | " +
-                        "Fuel Type: " + rs.getString("fuelType"));
+                        "Fuel Type: " + rs.getString("fuelType") + " | " +
+                        "Car Type: " + rs.getString("carType"));
             }
         } catch (SQLException e)
         {
@@ -296,6 +297,11 @@ public class Service {
 
     public void updateCarFuelType(String plate, String answer){
         String query = "UPDATE from cars SET fuelType = \"" + answer + "\" WHERE plate = " + plate + ";";
+        DBConnection.executeQuery(query);
+    }
+
+    public void updateCarType(String plate, String answer){
+        String query = "UPDATE from cars SET carType = \"" + answer + "\" WHERE plate = " + plate + ";";
         DBConnection.executeQuery(query);
     }
 

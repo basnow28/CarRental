@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.*;
 
 public class Controller {
@@ -65,7 +67,9 @@ public class Controller {
         String regDate = validation.getValidatedDate("Enter car registration date:");
         String odometer = Integer.toString(validation.getValidatedInt("Enter car odometer:"));
         String fuelType = validation.getValidatedString("Enter car fuel type:");
-        Car car = new Car(brand, model, plate, regDate, odometer, fuelType);
+        ArrayList <Integer> list = new ArrayList<>(4);
+        int carType = validation.getValidatedIntFromRange("Enter [1] for Luxury, [2] for Sports, [3] for Other", list);
+        Car car = new Car(brand, model, plate, regDate, odometer, fuelType, carType);
         System.out.println(car.toStringConsole());
         service.createCar(car);
     }
@@ -341,8 +345,8 @@ public class Controller {
         System.out.println("Please enter licence plate number of car you wish to modify:");
         String plate = scanner.next();
         System.out.println("What do you wish to modify? Type:");
-        System.out.println("[1] for brand and model, [2] for Licence Plate, [3] for Registration date, [4] for odometer, or [5] for Fuel Type");
-        System.out.println("Type [6] to exit to Main Menu");
+        System.out.println("[1] for brand and model, [2] for Licence Plate, [3] for Registration date, [4] for odometer, [5] for Fuel Type,");
+        System.out.println("[6] for Car Type, or [7] to exit to Main Menu");
         String answer = scanner.next();
         switch (answer){
             case "1":
@@ -362,6 +366,9 @@ public class Controller {
                 service.updateCarFuelType(plate, answer);
                 break;
             case "6":
+                service.updateCarType(plate, answer);
+                break;
+            case "7":
                 new MainMenu();
                 break;
         }
