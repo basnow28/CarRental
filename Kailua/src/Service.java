@@ -72,7 +72,7 @@ public class Service {
         DBConnection.executeQuery("INSERT INTO rentals (fromDate, fromTime, toDate, toTime, maxKM, km, car_id, customer_id) VALUES ( \"" + contract.getFromDate() + "\", \"" +
                 contract.getFromTime() + "\", \"" + contract.getToDate() + "\", \"" + contract.getToTime() + "\", " + contract.getMaxKm() + ", " + contract.getKm() + ", \"" +
                 contract.getCarId() + "\", \"" + contract.getCustomerId() + "\");");
-        System.out.println("\nRental contract created.");
+        System.out.println("\nRental contract created.\n");
     }
 
     public ArrayList<Integer> getRentals(String field, String key) {
