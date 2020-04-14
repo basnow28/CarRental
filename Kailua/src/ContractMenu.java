@@ -7,9 +7,12 @@ public class ContractMenu {
 
     public ContractMenu(){
         App.getController().createContract();
+        new MainMenu();
     }
     public static void displayContract(){
         App.getController().displayContracts();
+        System.out.println();
+        new MainMenu();
     }
 
     public static void updateExistingContract(){
