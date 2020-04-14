@@ -10,15 +10,44 @@ public class Service {
 
     public Service(){
     }
-
-    public static String generateCustomerId(){
-        String from = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        String result = "";
-        for(int i=0; i<6; i++){
-            char newletter = from.charAt(ThreadLocalRandom.current().nextInt(0, 36));
-            result = result + newletter;
+    public static void createAddress(Address address){
+        DBConnection.executeQuery("INSERT INTO addresses (streetName, zipCode, city) VALUES ( \"" + address.getStreetName() + "\", \"" +
+                address.getZipcode() + "\", \"" + address.getCity() + "\");");
+        System.out.println("Address created: ");
+        ResultSet rs = DBConnection.selectQuery("SELECT * FROM addresses WHERE addresses.streetName = \"" + address.getStreetName() + "\";");
+        try
+        {
+            while (rs.next())
+            {
+                System.out.println("Address ID: " + rs.getInt("address_id") + " | " + "Street name: " + rs.getString("streetName") + " | " + "Zip code: "
+                        + rs.getString("zipCode") + " | " + "City: " + rs.getString("city") + "\n" );
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
         }
-        return result;
+    }
+    public static void createCustomer(Customer customer){
+        DBConnection.executeQuery("INSERT INTO customers (firstName, lastName, mobilePhone, email, driverLicenceNumber, driverSinceDate, address_id) VALUES" +
+                " ( \"" + customer.getFirstName() + "\", \"" +
+                customer.getLastName() + "\", \"" + customer.getMobilePhone() + "\", \"" + customer.getEmail() + "\", \"" + customer.getDriverLicence() + "\", \"" +
+                customer.getDriverSince() + "\", " + customer.getAddress_id() + ");");
+        System.out.println("Created customer: ");
+
+        ResultSet rs = DBConnection.selectQuery("SELECT * FROM customers WHERE customers.driverLicenceNumber = \"" + customer.getDriverLicence() + "\";");
+        try
+        {
+            while (rs.next())
+            {
+                System.out.println("Cusotmer ID: " + rs.getInt("customer_id") + " | " + "First name: " + rs.getString("firstName") + " | " +
+                        "Last name: " + rs.getString("lastName") + " | " + "Mobile phone: " + rs.getString("mobilePhone") + " | " +
+                        "Email: " +rs.getString("email") + " | " + " Driver licence number: " + rs.getString("driverLicenceNumber") + " | "
+                        + "Driver since date: " + rs.getString("driverSinceDate") + " | " + "Address ID: " + rs.getInt("address_id") + "\n");
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static boolean login(){
@@ -45,17 +74,6 @@ public class Service {
                 contract.getCarId() + "\", \"" + contract.getCustomerId() + "\");");
         System.out.println("\nRental contract created.");
     }
-
-    /* public void createSMTH(){
-        ResultSet rs = DBConnection.selectQuery("SELECT COLUMN FROM TABLE;");
-        try{
-            while(rs.next()){
-                System.out.println("Name" + rs.getString(""));
-            }
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }*/
 
     public ArrayList<Integer> getRentals(String field, String key) {
         String query = "SELECT rental_id, fromDate, fromTime, toDate, toTime, Customers.customer_id, brand, model, plate FROM Rentals" +
@@ -205,7 +223,7 @@ public class Service {
     }
 
     public static void displayContracts(){
-        ResultSet rs = DBConnection.selectQuery("SELECT * FROM rentals;");
+        ResultSet rs = DBConnection.selectQuery("SELECT * FROM Rentals;");
         try
         {
             while (rs.next())
@@ -286,7 +304,5 @@ public class Service {
         String query = "UPDATE from cars SET carType = \"" + answer + "\" WHERE plate = " + plate + ";";
         DBConnection.executeQuery(query);
     }
-
-
 
 }

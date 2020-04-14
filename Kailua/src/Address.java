@@ -1,20 +1,16 @@
 public class Address {
 
     private String streetName;
-    private String streetNumber;
     private String zipcode;
     private String city;
-    private String country;
 
     public Address(){
     }
 
-    public Address(String streetName, String streetNumber, String zipcode, String city, String country) {
+    public Address(String streetName, String zipcode, String city) {
         this.streetName = streetName;
-        this.streetNumber = streetNumber;
         this.zipcode = zipcode;
         this.city = city;
-        this.country = country;
     }
 
     public String getStreetName() {
@@ -23,14 +19,6 @@ public class Address {
 
     public void setStreetName(String streetName) {
         this.streetName = streetName;
-    }
-
-    public String getStreetNumber() {
-        return streetNumber;
-    }
-
-    public void setStreetNumber(String streetNumber) {
-        this.streetNumber = streetNumber;
     }
 
     public String getZipcode() {
@@ -49,16 +37,9 @@ public class Address {
         this.city = city;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
 
     @Override
     public String toString(){
-        return this.streetName + " " + this.streetNumber + " " + this.zipcode + " " + this.city + " " + this.country;
+        return this.streetName + " " + this.zipcode + " " + this.city ;
     }
 }

@@ -13,7 +13,38 @@ public class Controller {
         validation = new Validation();
         scanner = new Scanner(System.in);
     }
+    public static void createAddress(){
+        System.out.println("Enter customer's street name: ");
+        String streetName = scanner.next();
+        System.out.println("Enter customer's zip code: ");
+        String zipcode = scanner.next();
+        System.out.println("Enter customer's city: ");
+        String city = scanner.next();
+        Address address = new Address(streetName, zipcode, city);
+        service.createAddress(address);
+    }
+    public static void createCustomer(){
+        String firstName =  validation.getValidatedName("Enter first name: ");
+        String lastName =  validation.getValidatedName("Enter last name: ");
+        String mobilePhone = validation.getValidatedPhone("Enter the phone number: ");
+        String email = validation.getValidatedEmail("Enter the email address: ");
+        String driverLicence = validation.getValidatedLicenceNumber("Enter licence number [XXXXX-XX-XXXX]");
+        String driverSince = validation.getValidatedDate("Enter driver since date: ");
+        System.out.print("\nCreate new adress?: [yes/no]");
+        String choice = scanner.next();
+        if (choice.equalsIgnoreCase("yes")){
+            createAddress();
+        }
+        int address_id = validation.getValidatedInt("Enter customer's address ID: ");
+        Customer customer = new Customer(firstName, lastName, mobilePhone, email, driverLicence, driverSince, address_id);
+        service.createCustomer(customer);
+    }
     public static void createContract(){
+        System.out.print("\nCreate new customer? [yes/no]: ");
+        String choice = scanner.next();
+        if(choice.equalsIgnoreCase("yes")) {
+                createCustomer();
+        }
         String carId = validation.getValidatedId("Enter car Id: ");
         String customerId = validation.getValidatedId("Enter customer Id: ");
         String dateFrom = validation.getValidatedDate("Enter starting date of contract: ");
@@ -27,9 +58,6 @@ public class Controller {
     }
     public static void displayContracts(){
         service.displayContracts();
-    }
-    public static String generateEmployeeId() {
-        return service.generateCustomerId();
     }
 
     public static void createCar(){
@@ -64,8 +92,7 @@ public class Controller {
             System.out.println("2. End date");
             System.out.println("3. Car brand");
             System.out.println("4. Car plate");
-            System.out.println("5. Customer information");
-            System.out.println("6. Go back");
+            System.out.println("5. Go back");
             choice = scanner.next();
             switch(choice){
                 case "1":
@@ -92,7 +119,7 @@ public class Controller {
             }else{
                 System.out.println("There are no results");
             }
-        }while(!choice.equals("6"));
+        }while(!choice.equals("5"));
         ContractMenu.updateExistingContract();
     }
 

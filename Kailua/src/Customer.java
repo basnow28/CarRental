@@ -1,34 +1,24 @@
 public class Customer {
 
-    private String customerId;
     private String firstName;
     private String lastName;
     private String mobilePhone;
     private String email;
     private String driverLicence;
     private String driverSince;
-    private Address address;
+    private int address_id;
 
     public Customer(){
     }
 
-    public Customer(String customerId, String firstName, String lastName, String mobilePhone, String email, String driverLicence, String driverSince, Address address) {
-        this.customerId=customerId;
+    public Customer(String firstName, String lastName, String mobilePhone, String email, String driverLicence, String driverSince, int address_id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.mobilePhone = mobilePhone;
         this.email = email;
         this.driverLicence = driverLicence;
         this.driverSince = driverSince;
-        this.address = address;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+        this.address_id = address_id;
     }
 
     public String getFirstName() {
@@ -79,18 +69,18 @@ public class Customer {
         this.driverSince = driverSince;
     }
 
-    public Address getAddress() {
-        return address;
+    public int getAddress_id() {
+        return address_id;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddress_id(int address_id) {
+        this.address_id = address_id;
     }
 
     @Override
     public String toString(){
         return this.firstName + " " + this.lastName + " " + this.mobilePhone + " " + this.email +
-                " " + " " + this.driverLicence + " "  + this.driverSince + " " + this.address;
+                " " + " " + this.driverLicence + " "  + this.driverSince + " " + this.address_id;
     }
 
 }
