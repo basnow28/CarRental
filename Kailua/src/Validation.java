@@ -70,7 +70,7 @@ public class Validation {
     }
 
     private boolean validatePlate(String text){
-        Pattern pattern = Pattern.compile("[A-Za-z1-9]+");
+        Pattern pattern = Pattern.compile("[a-zA-Z0-9]+");
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();
     }

@@ -67,7 +67,10 @@ public class Controller {
         String regDate = validation.getValidatedDate("Enter car registration date:");
         String odometer = Integer.toString(validation.getValidatedInt("Enter car odometer:"));
         String fuelType = validation.getValidatedString("Enter car fuel type:");
-        ArrayList <Integer> list = new ArrayList<>(4);
+        ArrayList <Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
         int carType = validation.getValidatedIntFromRange("Enter [1] for Luxury, [2] for Sports, [3] for Other", list);
         Car car = new Car(brand, model, plate, regDate, odometer, fuelType, carType);
         System.out.println(car.toStringConsole());
@@ -350,23 +353,38 @@ public class Controller {
         String answer = scanner.next();
         switch (answer){
             case "1":
-                service.updateCarBrand(plate, answer);
-                service.updateCarModel(plate, answer);
+                System.out.println("What is the new brand?");
+                String carBrand = scanner.next();
+                System.out.println("What is the new model?");
+                String carModel = scanner.next();
+                service.updateCarBrand(plate, carBrand);
+                service.updateCarModel(plate, carModel);
                 break;
             case "2":
-                service.updateCarPlate(plate, answer);
+                System.out.println("What is the new licence plate?");
+                String carPlate = scanner.next();
+                service.updateCarPlate(plate, carPlate);
                 break;
             case "3":
-                service.updateCarRegDate(plate, answer);
+                String regDate = validation.getValidatedDate("What is the new registration date?");
+                service.updateCarRegDate(plate, regDate);
                 break;
             case "4":
-                service.updateCarOdometer(plate, answer);
+                int odometer = validation.getValidatedInt("What is car odometer?");
+                service.updateCarOdometer(plate, Integer.toString(odometer));
                 break;
             case "5":
-                service.updateCarFuelType(plate, answer);
+                System.out.println("What is the new fuel type?");
+                String fuelType = scanner.next();
+                service.updateCarFuelType(plate, fuelType);
                 break;
             case "6":
-                service.updateCarType(plate, answer);
+                ArrayList <Integer> list = new ArrayList<>();
+                list.add(1);
+                list.add(2);
+                list.add(3);
+                int carType = validation.getValidatedIntFromRange("Enter [1] for Luxury, [2] for Sports, [3] for Other", list);
+                service.updateCarType(plate, Integer.toString(carType));
                 break;
             case "7":
                 new MainMenu();
