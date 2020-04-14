@@ -248,7 +248,7 @@ public class Service {
     }
 
     public boolean deleteCar(String plate) {
-        String query = "DELETE from Cars WHERE plate = " + plate + ";";
+        String query = "DELETE from Cars WHERE plate = \"" + plate + "\";";
         return DBConnection.executeQuery(query);
     }
 
